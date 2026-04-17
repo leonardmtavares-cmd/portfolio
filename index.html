@@ -379,6 +379,14 @@
     -webkit-backdrop-filter: blur(6px);
     cursor: pointer;
     opacity: 0;
+    transform: translateY(0);
+    transition: transform 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+  }
+
+  .work-item:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,255,255,0.28);
+    box-shadow: 0 18px 36px rgba(0,0,0,0.28);
   }
 
   .work-item.return-highlight {
@@ -446,7 +454,7 @@
     inset: 0;
     background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%);
     opacity: 0;
-    transition: opacity 0.4s;
+    transition: opacity 0.4s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -462,6 +470,8 @@
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 4px;
+    transform: translateY(8px);
+    transition: transform 0.45s ease;
   }
 
   .work-overlay span {
@@ -470,16 +480,23 @@
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
+    transform: translateY(8px);
+    transition: transform 0.45s ease;
+  }
+
+  .work-item:hover .work-overlay h3,
+  .work-item:hover .work-overlay span {
+    transform: translateY(0);
   }
 
   /* ── ABOUT ── */
   .about {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 40px 100px;
+    padding: 72px 40px 88px;
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: 80px;
+    gap: 64px;
     align-items: center;
   }
 
@@ -531,15 +548,17 @@
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -1px;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     color: var(--white);
+    max-width: 16ch;
   }
 
   .about-content p {
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 1.65;
     color: var(--muted);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+    max-width: 62ch;
   }
 
   .about-content p em {
@@ -551,7 +570,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 28px 0;
+    margin: 24px 0 18px;
   }
 
   .tool-tag {
@@ -569,7 +588,7 @@
     font-weight: 600;
     color: var(--ink);
     padding: 4px 0 0;
-    margin-top: 4px;
+    margin-top: 2px;
     line-height: 1.4;
     display: flex;
     align-items: center;
@@ -594,7 +613,7 @@
   .contact {
     background: var(--bg);
     color: var(--white);
-    padding: 100px 40px 120px;
+    padding: 88px 40px 104px;
     text-align: center;
     border-top: 1px solid rgba(255,255,255,0.12);
   }
@@ -605,7 +624,7 @@
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     opacity: 0;
   }
 
@@ -613,14 +632,14 @@
     font-size: clamp(32px, 5vw, 56px);
     font-weight: 800;
     letter-spacing: -1px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     opacity: 0;
   }
 
   .contact-sub {
     font-size: 16px;
     color: rgba(255,255,255,0.5);
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     opacity: 0;
   }
 
@@ -634,6 +653,7 @@
     padding-bottom: 4px;
     transition: color 0.3s;
     opacity: 0;
+    margin-bottom: 14px;
   }
 
   .contact-email:hover { color: var(--accent); }
@@ -642,7 +662,7 @@
     display: flex;
     justify-content: center;
     gap: 24px;
-    margin-top: 48px;
+    margin-top: 28px;
     opacity: 0;
   }
 
@@ -741,8 +761,8 @@
     .work-row.three,
     .work-row.wide-narrow,
     .work-row.narrow-wide { grid-template-columns: 1fr; }
-    .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
-    .contact { padding: 80px 24px 100px; }
+    .about { grid-template-columns: 1fr; padding: 56px 24px 72px; gap: 32px; }
+    .contact { padding: 72px 24px 88px; }
   }
 </style>
 </head>
@@ -854,16 +874,16 @@
   </div>
   <div class="about-content">
     <div class="about-label">About</div>
-    <h2>Designer who brings interfaces to life</h2>
+    <h2>Motion designer for interfaces</h2>
     <p>I’m Leonard Maciel Tavares, a motion designer based in Portugal working at the intersection of animation, UI, and interaction design.
 I use motion not just to enhance visuals, but to guide behavior, improve clarity, and create meaningful digital experiences.</p>
     <!-- <p><em>Currently building towards a creative base in Japan.</em></p> -->
     <div class="tools-list">
       <span class="tool-tag">After Effects</span>
-      <span class="tool-tag">Figma</span>
-      <span class="tool-tag">Rive</span>
       <span class="tool-tag">Illustrator</span>
+      <span class="tool-tag">Figma</span>
       <span class="tool-tag">Blender</span>
+      <span class="tool-tag">Unity</span>
     </div>
     <div class="availability">
       <span class="dot"></span>
@@ -901,14 +921,21 @@ I use motion not just to enhance visuals, but to guide behavior, improve clarity
   // Hero entrance
   const heroTl = gsap.timeline({ delay: 0.3 });
   heroTl
-    .to('.hero-label', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
-    .to('.hero h1', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
-    .to('.hero-cta', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
-    .to('.hero-scroll', { opacity: 0.6, duration: 1 }, '-=0.3');
+    .fromTo(
+      ['.hero-label', '.hero h1', '.hero-sub', '.hero-cta'],
+      { opacity: 0, y: 34 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.14
+      }
+    )
+    .to('.hero-scroll', { opacity: 0.6, duration: 1 }, '-=0.25');
 
   // Set initial states
-  gsap.set(['.hero-label', '.hero h1', '.hero-sub', '.hero-cta'], { y: 30 });
+  gsap.set(['.hero-label', '.hero h1', '.hero-sub', '.hero-cta'], { y: 34, opacity: 0 });
 
   // Scroll-triggered reveals
   function onScroll() {
@@ -918,19 +945,21 @@ I use motion not just to enhance visuals, but to guide behavior, improve clarity
       const inView = rect.top < window.innerHeight * 0.85;
       if (inView && !item.dataset.revealed) {
         item.dataset.revealed = 'true';
+        const isWorkCard = item.classList.contains('work-item');
         gsap.to(item, {
           opacity: 1,
           y: 0,
+          scale: isWorkCard ? 1 : 1,
           duration: 0.8,
           ease: 'power3.out',
-          delay: index * 0.03
+          delay: isWorkCard ? index * 0.06 : index * 0.03
         });
       }
     });
   }
 
   // Set initial scroll states
-  gsap.set('.work-item, .reel-container, .about-photo, .about-content, .contact-label, .contact h2, .contact-sub, .contact-email, .contact-socials', { y: 40 });
+  gsap.set('.work-item, .reel-container, .about-photo, .about-content, .contact-label, .contact h2, .contact-sub, .contact-email, .contact-socials', { y: 40, scale: 0.96 });
 
   window.addEventListener('scroll', onScroll);
   setTimeout(onScroll, 500);
