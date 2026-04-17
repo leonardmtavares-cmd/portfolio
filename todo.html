@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrutura do Portfólio — Leonard Tavares</title>
+<style>
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f1efe8;
+    --color-text-primary: #2c2c2a;
+    --color-text-secondary: #5f5e5a;
+    --color-text-tertiary: #888780;
+    --color-border-tertiary: rgba(0,0,0,0.12);
+    --color-border-secondary: rgba(0,0,0,0.22);
+    --color-background-danger: #fcebeb;
+    --color-text-danger: #a32d2d;
+    --color-background-warning: #faeeda;
+    --color-text-warning: #854f0b;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --font-sans: system-ui, -apple-system, sans-serif;
+    --font-mono: ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background-primary: #1e1e1c;
+      --color-background-secondary: #2c2c2a;
+      --color-text-primary: #e8e6df;
+      --color-text-secondary: #a8a69f;
+      --color-text-tertiary: #6e6d68;
+      --color-border-tertiary: rgba(255,255,255,0.1);
+      --color-border-secondary: rgba(255,255,255,0.18);
+      --color-background-danger: #501313;
+      --color-text-danger: #f09595;
+      --color-background-warning: #412402;
+      --color-text-warning: #fac775;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    padding: 2rem 1.5rem 4rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .page-header { margin-bottom: 1.8rem; }
+  .page-header h1 { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .page-header p { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+
+  .wrap { font-family: var(--font-sans); padding: 0.5rem 0; }
+  .sec { margin-bottom: 1.4rem; }
+  .sec-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+  .page-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; margin-bottom: 8px; }
+  .page-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; background: var(--color-background-primary); user-select: none; }
+  .page-head:hover { background: var(--color-background-secondary); }
+  .page-num { font-size: 10px; font-weight: 500; font-family: var(--font-mono); color: var(--color-text-tertiary); min-width: 24px; }
+  .page-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); flex: 1; }
+  .page-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+  .t-must { background: var(--color-background-danger); color: var(--color-text-danger); }
+  .t-good { background: var(--color-background-warning); color: var(--color-text-warning); }
+  .t-opt { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+  .chev { font-size: 10px; color: var(--color-text-tertiary); transition: transform .18s; }
+  .chev.open { transform: rotate(180deg); }
+  .page-body { display: none; padding: 12px 14px; border-top: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); }
+  .page-body.open { display: block; }
+  .page-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 10px; }
+  .items { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .item { display: flex; gap: 8px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .item::before { content: '→'; color: var(--color-text-tertiary); flex-shrink: 0; }
+  .item strong { color: var(--color-text-primary); font-weight: 500; }
+  .note { margin-top: 10px; padding: 9px 12px; background: var(--color-background-secondary); border-left: 2px solid var(--color-border-secondary); border-radius: 0 4px 4px 0; font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .note strong { color: var(--color-text-primary); font-weight: 500; }
+  .divider { height: 0.5px; background: var(--color-border-tertiary); margin: 1.2rem 0; }
+  .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .rule { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+  .rule-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .rule-desc { font-size: 11px; color: var(--color-text-secondary); line-height: 1.5; }
+  .priority-strip { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .ps-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--color-text-secondary); }
+  .ps-dot { width: 7px; height: 7px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Estrutura do Portfólio — Leonard Tavares</h1>
+  <p>Motion Designer · Adobe Portfolio · Versão 1.0</p>
+</div>
+
+<div class="wrap">
+
+<div class="priority-strip">
+  <div class="ps-item"><span class="ps-dot" style="background:#E24B4A"></span>Obrigatório</div>
+  <div class="ps-item"><span class="ps-dot" style="background:#EF9F27"></span>Importante</div>
+  <div class="ps-item"><span class="ps-dot" style="background:#888780"></span>Opcional</div>
+</div>
+
+<div class="sec">
+  <div class="sec-label">Páginas do site</div>
+
+  <div class="page-card">
+    <div class="page-head" onclick="tog('p1','c1')">
+      <span class="page-num">01</span>
+      <span class="page-name">Homepage</span>
+      <span class="page-tag t-must">Obrigatório</span>
+      <span class="chev open" id="c1">▼</span>
+    </div>
+    <div class="page-body open" id="p1">
+      <div class="page-desc">A única página que toda a gente vê. Tens 5–8 segundos para comunicar quem és e o que fazes. Sem ambiguidade.</div>
+      <ul class="items">
+        <li class="item"><strong>Nome + título numa linha:</strong> "Leonard Tavares — Motion Designer & UI Animation"</li>
+        <li class="item"><strong>Subtítulo de posicionamento:</strong> "Explainers, UI animation e social motion para empresas tech e SaaS. Remoto, baseado na Europa."</li>
+        <li class="item"><strong>Reel de 60 segundos</strong> em destaque — autoplay sem som, loop. É o primeiro elemento visual.</li>
+        <li class="item"><strong>3 miniaturas dos projetos</strong> com link para cada case study — logo abaixo do reel.</li>
+        <li class="item"><strong>Botão de contacto visível</strong> — "Hire me" ou "Get in touch" — no topo e no fim da página.</li>
+      </ul>
+      <div class="note"><strong>Regra de ouro:</strong> alguém que não te conhece de lado nenhum tem de perceber em 5 segundos que és motion designer para tech. Se precisar de ler mais do que 2 linhas para perceber isso, simplifica.</div>
+    </div>
+  </div>
+
+  <div class="page-card">
+    <div class="page-head" onclick="tog('p2','c2')">
+      <span class="page-num">02</span>
+      <span class="page-name">Trabalhos — 3 Case Studies</span>
+      <span class="page-tag t-must">Obrigatório</span>
+      <span class="chev" id="c2">▼</span>
+    </div>
+    <div class="page-body" id="p2">
+      <div class="page-desc">O coração do portfólio. Cada projeto conta uma história: problema → processo → solução. Não é galeria de imagens — é raciocínio de designer.</div>
+      <ul class="items">
+        <li class="item"><strong>Título do projeto</strong> + cliente (pode ser fictício ou "personal project") + ano</li>
+        <li class="item"><strong>Contexto em 2 linhas:</strong> "O cliente precisava de um explainer para o produto X. O objetivo era..."</li>
+        <li class="item"><strong>O trabalho em si:</strong> vídeo embed ou GIF animado em primeiro lugar — não imagens estáticas</li>
+        <li class="item"><strong>Processo em 3–4 imagens:</strong> storyboard, frames-chave, variações. Mostra que há pensamento por trás.</li>
+        <li class="item"><strong>Resultado em 1 linha:</strong> "Entregue em 5 dias. Cliente usou em campanha de lançamento." — mesmo que simples.</li>
+      </ul>
+      <div class="note"><strong>Os 3 projetos ideais para o teu nicho:</strong> <strong>1)</strong> Explainer video ou animação de produto (SaaS/tech) — mostra capacidade narrativa. <strong>2)</strong> UI animation ou onboarding animado — liga motion a produto digital. <strong>3)</strong> Social motion — pack de posts animados, formato stories ou reel. Se não tens estes projetos de clientes reais, cria projetos fictícios para marcas conhecidas — é prática aceite e honesta se identificares como "concept project".</div>
+    </div>
+  </div>
+
+  <div class="page-card">
+    <div class="page-head" onclick="tog('p3','c3')">
+      <span class="page-num">03</span>
+      <span class="page-name">About</span>
+      <span class="page-tag t-must">Obrigatório</span>
+      <span class="chev" id="c3">▼</span>
+    </div>
+    <div class="page-body" id="p3">
+      <div class="page-desc">Não é currículo. É a resposta à pergunta "com quem vou estar a trabalhar?" Tem de ter personalidade.</div>
+      <ul class="items">
+        <li class="item"><strong>Foto profissional</strong> — rosto visível, fundo neutro ou contextual. Sem foto = sem rosto = menos confiança.</li>
+        <li class="item"><strong>Parágrafo de apresentação em inglês</strong> — quem és, o que fazes, de onde vens, onde estás. 4–5 linhas máximo.</li>
+        <li class="item"><strong>O que te diferencia:</strong> "10+ anos de experiência em motion design. Especializado em animar interfaces e produtos digitais para clientes tech na Europa."</li>
+        <li class="item"><strong>Stack de ferramentas:</strong> After Effects · Figma · Rive · Adobe Illustrator — lista limpa, sem ícones excessivos.</li>
+        <li class="item"><strong>Disponibilidade:</strong> "Available for remote freelance projects · Based in Portugal · EU timezone"</li>
+      </ul>
+      <div class="note"><strong>Podes mencionar o Japão?</strong> Sim, e é um diferencial de branding. Uma linha como "Currently building towards a creative base in Japan" comunica visão e originalidade sem precisar de explicar o master plan inteiro.</div>
+    </div>
+  </div>
+
+  <div class="page-card">
+    <div class="page-head" onclick="tog('p4','c4')">
+      <span class="page-num">04</span>
+      <span class="page-name">Contacto</span>
+      <span class="page-tag t-must">Obrigatório</span>
+      <span class="chev" id="c4">▼</span>
+    </div>
+    <div class="page-body" id="p4">
+      <div class="page-desc">Tem de ser simples ao ponto de não haver desculpa para não contactar.</div>
+      <ul class="items">
+        <li class="item"><strong>E-mail clicável</strong> — o mais importante. Não esconder atrás de formulário complicado.</li>
+        <li class="item"><strong>Link do LinkedIn</strong> — clientes europeus verificam o LinkedIn antes de responder.</li>
+        <li class="item"><strong>Link do Behance</strong> — para quem quer ver mais trabalho.</li>
+        <li class="item"><strong>Frase de abertura:</strong> "Available for motion design projects — let's talk." Uma linha, sem pitch agressivo.</li>
+      </ul>
+      <div class="note"><strong>Não precisas de formulário de contacto.</strong> O Adobe Portfolio tem essa opção mas complica mais do que ajuda. E-mail direto converte melhor — menos fricção.</div>
+    </div>
+  </div>
+
+  <div class="page-card">
+    <div class="page-head" onclick="tog('p5','c5')">
+      <span class="page-num">05</span>
+      <span class="page-name">Serviços + Preços</span>
+      <span class="page-tag t-good">Importante</span>
+      <span class="chev" id="c5">▼</span>
+    </div>
+    <div class="page-body" id="p5">
+      <div class="page-desc">Não é obrigatório mas elimina muito ruído — clientes sem budget percebem logo, clientes sérios sentem-se mais seguros.</div>
+      <ul class="items">
+        <li class="item"><strong>Explainer video 60–90s</strong> — "from €800" (não mostrar teto)</li>
+        <li class="item"><strong>Social motion pack mensal</strong> — "from €400/month"</li>
+        <li class="item"><strong>UI animation / onboarding</strong> — "from €600 per project"</li>
+        <li class="item">Nota: "Final price depends on scope and timeline. Let's talk."</li>
+      </ul>
+      <div class="note"><strong>Podes não ter esta página na versão 1.</strong> Adiciona depois de teres os primeiros 2–3 clientes e saberes o que o mercado aceita sem negociar.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+<div class="sec-label">Regras de execução — Adobe Portfolio</div>
+<div class="rule-grid">
+  <div class="rule">
+    <div class="rule-title">Língua</div>
+    <div class="rule-desc">100% inglês. O mercado europeu de tech é inglês. Não ter versão PT não é problema.</div>
+  </div>
+  <div class="rule">
+    <div class="rule-title">Domínio</div>
+    <div class="rule-desc">Ativa o domínio personalizado se tiveres — leonardtavares.com ou ltmotion.com. Parece mais profissional do que myportfolio.adobe.com/leonard.</div>
+  </div>
+  <div class="rule">
+    <div class="rule-title">Vídeos</div>
+    <div class="rule-desc">Embed do Vimeo, não upload direto. Vimeo tem melhor qualidade e não mostra publicidade como o YouTube.</div>
+  </div>
+  <div class="rule">
+    <div class="rule-title">Móvel</div>
+    <div class="rule-desc">Verifica o layout em telemóvel antes de publicar. O Adobe Portfolio escala bem mas às vezes o texto fica pequeno.</div>
+  </div>
+  <div class="rule">
+    <div class="rule-title">Cores</div>
+    <div class="rule-desc">Fundo escuro ou claro — escolhe um e sê consistente. Fundo escuro funciona melhor para mostrar motion e vídeo.</div>
+  </div>
+  <div class="rule">
+    <div class="rule-title">Publicar já</div>
+    <div class="rule-desc">Com 3 projetos e as 4 páginas obrigatórias feitas, publica. Perfeito é inimigo do publicado.</div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function tog(bodyId, chevId) {
+  const b = document.getElementById(bodyId);
+  const c = document.getElementById(chevId);
+  b.classList.toggle('open');
+  c.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
