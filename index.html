@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leonard Maciel | Motion Designer</title>
+<script src="https://artifactcdn.diabrowser.engineering/ajax/libs/gsap/gsap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="preload" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #000000;
+    --ink: #F5F3EF;
+    --muted: #A3A3A3;
+    --accent: #FF5A2A;
+    --card-bg: #111111;
+    --white: #FFFFFF;
+    --nav-height: 64px;
+    --gap: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 100;
+    background: var(--bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .nav-logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #F5F3EF;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #F5F3EF;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1.5px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 72vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 96px 40px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.96);
+    opacity: 0.50;
+  }
+
+  .hero-media-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(0, 0, 0, 0.62) 45%,
+      rgba(0, 0, 0, 0.84) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    opacity: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 6.5vw, 78px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    opacity: 0;
+  }
+
+  .hero h1 .accent { color: var(--accent); }
+
+  .hero-sub {
+    font-size: clamp(14px, 1.6vw, 17px);
+    color: rgba(255,255,255,0.84);
+    max-width: 620px;
+    line-height: 1.6;
+    margin: 0 auto 34px;
+    opacity: 0;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    transition: background 0.3s, transform 0.3s;
+    opacity: 0;
+  }
+
+  .hero-cta:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.04);
+  }
+
+  .hero-cta svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s;
+  }
+
+  .hero-cta:hover svg {
+    transform: translateX(4px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+  }
+
+  .hero-scroll span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--muted);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 1px;
+    height: 40px;
+    background: var(--accent);
+    animation: scrollDown 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollDown {
+    0% { top: -40px; }
+    50% { top: 40px; }
+    100% { top: -40px; }
+  }
+
+  /* ── REEL SECTION ── */
+  .reel-section {
+    padding: 0 40px 80px;
+  }
+
+  .reel-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--card-bg);
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    opacity: 0;
+    border: none;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .reel-placeholder {
+    color: var(--white);
+    text-align: center;
+  }
+
+  .reel-placeholder .play-icon {
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .reel-container:hover .play-icon {
+    border-color: var(--accent);
+    transform: scale(1.1);
+  }
+
+  .reel-placeholder svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--white);
+    margin-left: 4px;
+  }
+
+  .reel-placeholder p {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .reel-container:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  /* ── WORK GRID ── */
+  .section-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px 40px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .section-header h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--white);
+  }
+
+  .section-header .count {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .work-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    display: grid;
+    gap: var(--gap);
+  }
+
+  /* Row patterns inspired by Rúben's mixed layout */
+  .work-row {
+    display: grid;
+    gap: var(--gap);
+  }
+
+  .work-row.two { grid-template-columns: 1fr 1fr; }
+  .work-row.three { grid-template-columns: 1fr 1fr 1fr; }
+  .work-row.wide-narrow { grid-template-columns: 1.6fr 1fr; }
+  .work-row.narrow-wide { grid-template-columns: 1fr 1.6fr; }
+  .work-row.solo { grid-template-columns: 1fr; }
+
+  .work-row.wide-narrow .work-item:nth-child(2) {
+    aspect-ratio: 1/1;
+  }
+
+  .work-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .work-item.return-highlight {
+    box-shadow: 0 0 0 3px rgba(232, 67, 42, 0.9), 0 18px 36px rgba(0, 0, 0, 0.18);
+    transform: translateY(-2px);
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+  }
+
+  .work-item.tall { aspect-ratio: 3/4; }
+
+  .work-thumb {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: var(--thumb-image), linear-gradient(135deg, var(--card-bg), #1A1A1A);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .work-item:hover .work-thumb {
+    transform: scale(1.05);
+  }
+
+  .work-thumb-inner {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .work-thumb-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 20px;
+  }
+
+  .work-thumb-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.5px;
+  }
+
+  .work-thumb.has-image .work-thumb-inner {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .work-item:hover .work-thumb.has-image .work-thumb-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .work-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+  }
+
+  .work-item:hover .work-overlay {
+    opacity: 1;
+  }
+
+  .work-overlay h3 {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .work-overlay span {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-photo {
+    aspect-ratio: 1/1;
+    background: transparent;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .about-photo-placeholder {
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .about-photo-placeholder svg {
+    width: 64px;
+    height: 64px;
+    stroke: var(--muted);
+    fill: none;
+    stroke-width: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .about-photo-placeholder p {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .about-content {
+    opacity: 0;
+  }
+
+  .about-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .about-content h2 {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .about-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .about-content p em {
+    font-style: italic;
+    color: var(--white);
+  }
+
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 28px 0;
+  }
+
+  .tool-tag {
+    padding: 8px 16px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.5px;
+  }
+
+  .availability {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    padding: 16px 0;
+    border-top: 1px solid rgba(255,255,255,0.16);
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .availability .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2D8A4E;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--bg);
+    color: var(--white);
+    padding: 100px 40px 120px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .contact-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+  }
+
+  .contact h2 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    opacity: 0;
+  }
+
+  .contact-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 48px;
+    opacity: 0;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    transition: color 0.3s;
+    opacity: 0;
+  }
+
+  .contact-email:hover { color: var(--accent); }
+
+  .contact-socials {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+    opacity: 0;
+  }
+
+  .contact-socials a {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .contact-socials a:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--bg);
+    padding: 24px 40px 80px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 1px;
+  }
+
+  .reel-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 24px;
+  }
+
+  .reel-modal.is-open {
+    display: flex;
+  }
+
+  .reel-modal-content {
+    width: min(1100px, 100%);
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .reel-modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .reel-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 11px; letter-spacing: 1.5px; }
+    .hero {
+      min-height: 66vh;
+      padding: 86px 24px 52px;
+    }
+    .reel-section { padding: 0 20px 60px; }
+    .section-header { padding: 60px 20px 24px; }
+    .work-grid { padding: 0 20px 60px; }
+    .work-row.two,
+    .work-row.three,
+    .work-row.wide-narrow,
+    .work-row.narrow-wide { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .contact { padding: 80px 24px 100px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" style="display: flex; align-items: center; gap: 8px;">
+    <img src="images/logo.png" alt="Leonard Tavares logo" style="height: 40px; width: auto; border-radius: 4px;">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline preload="metadata" aria-hidden="true" poster="images/headshot2.png">
+      <source src="videos/videoBG2.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-media-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-label">Motion Designer & UI Animation</div>
+    <h1>I'M <span class="accent">LEONARD</span></h1>
+    <p class="hero-sub">Explainers, UI animation e social motion para empresas tech e SaaS. Remoto, baseado na Europa.</p>
+    <a href="#contact" class="hero-cta">
+      Get in Touch
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- REEL -->
+<section class="reel-section">
+  <button class="reel-container" id="open-reel" type="button" aria-label="Open reel video" data-youtube="https://www.youtube.com/watch?v=VIDEO_ID">
+    <div class="reel-placeholder">
+      <div class="play-icon">
+        <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
+      </div>
+      <p>Reel 2025</p>
+    </div>
+  </button>
+</section>
+
+<!-- WORK -->
+<div class="section-header" id="work">
+  <h2>Selected Work</h2>
+  <span class="count">3 Projects</span>
+</div>
+
+<div class="work-grid">
+  <!-- Row 1: wide + narrow -->
+  <div class="work-row wide-narrow">
+    <a href="case-1.html" class="work-item" data-project="1" style="text-decoration: none; color: inherit;">
+      <div class="work-thumb has-image" style="--thumb-image: url('images/case 1/cover.jpg');">
+        <div class="work-thumb-inner">
+          <div class="work-thumb-icon">01</div>
+          <div class="work-thumb-title">Explainer Video</div>
+        </div>
+      </div>
+      <div class="work-overlay">
+        <h3>SaaS Product Explainer</h3>
+        <span>Client Work · 2025</span>
+      </div>
+    </a>
+    <a href="case-2.html" class="work-item" data-project="2" style="text-decoration: none; color: inherit;">
+      <div class="work-thumb has-image" style="--thumb-image: url('images/case 2/cover.jpg');">
+        <div class="work-thumb-inner">
+          <div class="work-thumb-icon">02</div>
+          <div class="work-thumb-title">UI Animation</div>
+        </div>
+      </div>
+      <div class="work-overlay">
+        <h3>App Onboarding Flow</h3>
+        <span>UI Animation · 2025</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Row 2: solo wide -->
+  <div class="work-row solo">
+    <a href="case-3.html" class="work-item" data-project="3" style="aspect-ratio: 21/9; text-decoration: none; color: inherit;">
+      <div class="work-thumb has-image" style="--thumb-image: url('images/case 3/cover.jpg');">
+        <div class="work-thumb-inner">
+          <div class="work-thumb-icon">03</div>
+          <div class="work-thumb-title">Social Motion Pack</div>
+        </div>
+      </div>
+      <div class="work-overlay">
+        <h3>Social Motion Pack</h3>
+        <span>Monthly Pack · 2025</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-photo">
+    <img src="images/headshot2.png" alt="Leonard Tavares portrait" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+  <div class="about-content">
+    <div class="about-label">About</div>
+    <h2>Designer who brings interfaces to life</h2>
+    <p>I'm Leonard Maciel, a motion designer based in Portugal specializing in explainer videos, UI animation, and social motion for tech and SaaS companies.</p>
+    <p><em>Currently building towards a creative base in Japan.</em></p>
+    <div class="tools-list">
+      <span class="tool-tag">After Effects</span>
+      <span class="tool-tag">Figma</span>
+      <span class="tool-tag">Rive</span>
+      <span class="tool-tag">Illustrator</span>
+    </div>
+    <div class="availability">
+      <span class="dot"></span>
+      Available for remote freelance projects · EU timezone
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-label">Contact</div>
+  <h2>Let's work together</h2>
+  <p class="contact-sub">Available for motion design projects — let's talk.</p>
+  <a href="mailto:leonardtavares@icloud.com" class="contact-email">leonardtavares@icloud.com</a>
+  <div class="contact-socials">
+    <a href="#" title="LinkedIn">Li</a>
+    <a href="#" title="Behance">Be</a>
+  </div>
+</section>
+
+<div class="footer">
+  <p>&copy; 2026 Leonard Maciel. All rights reserved.</p>
+</div>
+
+<div class="reel-modal" id="reel-modal" aria-hidden="true">
+  <div class="reel-modal-content" role="dialog" aria-modal="true" aria-label="Reel video player">
+    <button class="reel-modal-close" id="close-reel" type="button" aria-label="Close reel">&times;</button>
+    <iframe id="reel-iframe" src="" title="Leonard reel" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  // ── GSAP Animations ──
+  // Hero entrance
+  const heroTl = gsap.timeline({ delay: 0.3 });
+  heroTl
+    .to('.hero-label', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
+    .to('.hero h1', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+    .to('.hero-cta', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+    .to('.hero-scroll', { opacity: 0.6, duration: 1 }, '-=0.3');
+
+  // Set initial states
+  gsap.set(['.hero-label', '.hero h1', '.hero-sub', '.hero-cta'], { y: 30 });
+
+  // Scroll-triggered reveals
+  function onScroll() {
+    const items = document.querySelectorAll('.work-item, .reel-container, .about-photo, .about-content, .contact-label, .contact h2, .contact-sub, .contact-email, .contact-socials');
+    items.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 0.85;
+      if (inView && !item.dataset.revealed) {
+        item.dataset.revealed = 'true';
+        gsap.to(item, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: index * 0.03
+        });
+      }
+    });
+  }
+
+  // Set initial scroll states
+  gsap.set('.work-item, .reel-container, .about-photo, .about-content, .contact-label, .contact h2, .contact-sub, .contact-email, .contact-socials', { y: 40 });
+
+  window.addEventListener('scroll', onScroll);
+  setTimeout(onScroll, 500);
+
+  // Reel modal
+  const reelTrigger = document.getElementById('open-reel');
+  const reelModal = document.getElementById('reel-modal');
+  const reelClose = document.getElementById('close-reel');
+  const reelIframe = document.getElementById('reel-iframe');
+
+  function getEmbedUrl(url) {
+    if (!url || !url.includes('youtube.com') && !url.includes('youtu.be')) {
+      return '';
+    }
+
+    let videoId = '';
+    if (url.includes('youtu.be/')) {
+      videoId = url.split('youtu.be/')[1].split('?')[0];
+    } else {
+      const parsedUrl = new URL(url);
+      videoId = parsedUrl.searchParams.get('v') || '';
+    }
+
+    return videoId ? 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0' : '';
+  }
+
+  function openReelModal() {
+    const embedUrl = getEmbedUrl(reelTrigger.dataset.youtube);
+    if (!embedUrl) {
+      return;
+    }
+    reelIframe.src = embedUrl;
+    reelModal.classList.add('is-open');
+    reelModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeReelModal() {
+    reelModal.classList.remove('is-open');
+    reelModal.setAttribute('aria-hidden', 'true');
+    reelIframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  reelTrigger.addEventListener('click', openReelModal);
+  reelClose.addEventListener('click', closeReelModal);
+  reelModal.addEventListener('click', (event) => {
+    if (event.target === reelModal) {
+      closeReelModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && reelModal.classList.contains('is-open')) {
+      closeReelModal();
+    }
+  });
+
+  // Highlight returned case card from query string (e.g. ?from=case-1)
+  function highlightReturnedCase() {
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
+    if (!from) {
+      return;
+    }
+
+    const caseMap = {
+      'case-1': '1',
+      'case-2': '2',
+      'case-3': '3'
+    };
+
+    const projectId = caseMap[from];
+    if (!projectId) {
+      return;
+    }
+
+    const card = document.querySelector('.work-item[data-project="' + projectId + '"]');
+    const workSection = document.getElementById('work');
+    if (!card || !workSection) {
+      return;
+    }
+
+    workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => card.classList.add('return-highlight'), 450);
+    setTimeout(() => card.classList.remove('return-highlight'), 2600);
+
+    const nextUrl = window.location.pathname + '#work';
+    window.history.replaceState({}, '', nextUrl);
+  }
+
+  highlightReturnedCase();
+
+  // ── Smooth anchor scrolling ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>

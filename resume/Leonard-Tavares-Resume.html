@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leonard Tavares Resume</title>
+  <style>
+    :root {
+      --text: #1f1f1d;
+      --muted: #5f5e5a;
+      --border: rgba(0, 0, 0, 0.14);
+      --bg: #ffffff;
+      --bg-soft: #f1efe8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg-soft);
+      color: var(--text);
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    .resume {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.7rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 1.4rem 0 0.55rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    p { margin: 0.2rem 0; }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    ul {
+      margin: 0.2rem 0 0;
+      padding-left: 1rem;
+    }
+
+    @media (min-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .resume {
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <article class="resume">
+    <header>
+      <h1>Leonard Tavares</h1>
+      <p class="muted">Motion Designer & UI Animation</p>
+      <p class="muted">Portugal · EU Timezone · Available for remote freelance projects</p>
+      <p class="muted">Email: hello@leonardtavares.com · LinkedIn: linkedin.com/in/your-profile · Behance: behance.net/your-profile</p>
+    </header>
+
+    <section>
+      <h2>Profile</h2>
+      <p>Motion Designer specialized in explainers, UI animation and social motion for tech and SaaS companies. 10+ years translating product complexity into clear and engaging visual stories.</p>
+    </section>
+
+    <section>
+      <h2>Core Services</h2>
+      <div class="grid">
+        <p>Explainer Video (60-90s)</p>
+        <p>UI Animation / Onboarding Motion</p>
+        <p>Social Motion Campaigns</p>
+        <p>Motion Systems for Product Teams</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tool Stack</h2>
+      <p>After Effects · Figma · Rive · Adobe Illustrator</p>
+    </section>
+
+    <section>
+      <h2>Selected Outcomes</h2>
+      <ul>
+        <li>Delivered launch-ready SaaS explainer assets in tight timelines.</li>
+        <li>Built motion guidelines for onboarding and feature education.</li>
+        <li>Created recurring social motion packages for growth campaigns.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Note</h2>
+      <p class="muted">This resume page is optimized for web and print. Use browser Print to PDF for a PDF export.</p>
+    </section>
+  </article>
+</body>
+</html>
