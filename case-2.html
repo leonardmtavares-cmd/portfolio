@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>App Onboarding Flow | Leonard Maciel</title>
+<title>Caroline Brasil — Visual Identity | Leonard Maciel</title>
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="apple-touch-icon" href="images/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="preload" as="style">
@@ -110,21 +110,21 @@
     font-size: 14px;
     color: var(--muted);
   }
+    
+  .case-meta span {
+    display: inline-block;
+  }
 
   .case-hero {
     width: 100%;
-    aspect-ratio: 16/9;
-    background: linear-gradient(135deg, var(--card-bg), #1A1A1A);
-    border: 1px solid rgba(255,255,255,0.18);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 60px 0;
-    color: var(--muted);
-    font-size: 14px;
+  }
+
+  .case-hero img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
   }
 
   .case-section {
@@ -168,6 +168,19 @@
     font-weight: 700;
   }
 
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .gallery img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+  }
+
   .case-cta {
     display: inline-block;
     margin-top: 40px;
@@ -208,7 +221,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="index.html#home" class="nav-logo">
     <img src="images/logo.png" alt="Leonard Tavares logo">
   </a>
   <a href="index.html?from=case-2#work" class="nav-back">← Back to Work</a>
@@ -217,39 +230,52 @@
 <div class="container">
   <div class="case-header">
     <div class="case-label">Case Study 02</div>
-    <h1>App Onboarding Flow</h1>
+    <h1>Caroline Brasil — Visual Identity</h1>
     <div class="case-meta">
-      <span>UI Animation</span>
-      <span>Product Design</span>
-      <span>2025</span>
+      <span>Client Work</span>
+      <span>Brand Identity</span>
+      <span>2023</span>
     </div>
   </div>
 
-  <div class="case-hero">Video/GIF Placeholder</div>
+  <div class="case-hero">
+    <img src="images/case 2/cover.png" alt="Caroline Brasil Cover">
+  </div>
 
   <div class="case-section">
     <h2>Challenge</h2>
-    <p>The mobile app had a complex onboarding process that caused 45% of new users to drop off before completing signup. We needed to redesign the experience with smooth animations to guide users through the flow intuitively.</p>
+    <p>A psychologist starting her private practice needed a complete visual identity — logo, color palette, typography, and stationery. The brand had to feel human, empathetic, and professional while reflecting her personal background and values.</p>
   </div>
 
   <div class="case-section">
     <h2>Approach</h2>
     <ul class="case-list">
-      <li>Analyzed user behavior data to identify friction points in onboarding</li>
-      <li>Designed micro-interactions that provide feedback at each step</li>
-      <li>Created transitions between screens that establish spatial relationships</li>
-      <li>Implemented scroll-triggered animations to maintain engagement</li>
+      <li>Explored the client’s family name and faith as creative starting points — the Pau-Brasil flower and religious iconography informed the symbol design</li>
+      <li>Developed 8+ logo variations combining monograms and botanical marks before narrowing to the final circular flower symbol</li>
+      <li>Selected Aboreto Regular (serif) for the brand name and Roboto (sans-serif) for body text — balancing elegance with readability</li>
+      <li>Built the palette around three neutral tones: Camel, White Smoke, and Ebony Clay — warm and soothing without losing sophistication</li>
+      <li>Animated the logo for digital use</li>
+      <li>Designed business cards with gold foil on dark cardstock</li>
     </ul>
   </div>
 
   <div class="case-section">
     <h2>Result</h2>
-    <p>The redesigned onboarding flow reduced drop-off rate to 18%, increased completion rate by 58%, and improved user satisfaction score from 3.2 to 4.7 stars. The animation-driven experience became a key retention driver.</p>
+    <p>A complete brand system ready for print and digital — from business cards to social media. The identity positions the client as approachable yet professional, standing out in a field where most branding is clinical and impersonal.</p>
   </div>
 
   <div class="case-section">
     <h2>Tools Used</h2>
-    <p>Figma · After Effects · Rive · Framer</p>
+    <p>Illustrator · After Effects</p>
+  </div>
+
+  <div class="gallery">
+    <img src="images/case 2/about.png" alt="Logo Variations">
+    <img src="images/case 2/symbol.png" alt="Research and Inspiration">
+    <img src="images/case 2/colors.png" alt="Color Palette">
+    <img src="images/case 2/type.png" alt="Typography">
+    <img src="images/case 2/logoanimado.gif" alt="Animated Logo">
+    <img src="images/case 2/cartão.png" alt="Business Cards">
   </div>
 
   <a href="index.html?from=case-2#work" class="case-cta">Back to Work</a>
