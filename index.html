@@ -827,7 +827,7 @@
 <!-- WORK -->
 <div class="section-header" id="work">
   <h2>Selected Work</h2>
-  <span class="count">3 Projects</span>
+  <span class="count">5 Projects</span>
 </div>
 
 <div class="work-grid">
@@ -871,6 +871,34 @@
       <div class="work-overlay">
         <h3>Atlantic Roast — Brand Identity</h3>
         <span>Concept Project · 2026</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Row 3: narrow + wide -->
+  <div class="work-row narrow-wide">
+    <a href="case-4.html" class="work-item" data-project="4" style="aspect-ratio: 1/1; text-decoration: none; color: inherit;">
+      <div class="work-thumb">
+        <div class="work-thumb-inner">
+          <div class="work-thumb-icon">04</div>
+          <div class="work-thumb-title">Project 4</div>
+        </div>
+      </div>
+      <div class="work-overlay">
+        <h3>Case 4 Project</h3>
+        <span>Category · 2026</span>
+      </div>
+    </a>
+    <a href="case-5.html" class="work-item" data-project="5" style="text-decoration: none; color: inherit;">
+      <div class="work-thumb">
+        <div class="work-thumb-inner">
+          <div class="work-thumb-icon">05</div>
+          <div class="work-thumb-title">Project 5</div>
+        </div>
+      </div>
+      <div class="work-overlay">
+        <h3>Case 5 Project</h3>
+        <span>Category · 2026</span>
       </div>
     </a>
   </div>
@@ -921,7 +949,7 @@ I use motion not just to enhance visuals, but to guide behavior, improve clarity
   <div class="contact-label">Contact</div>
   <h2>Let's work together</h2>
   <p class="contact-sub">Open for design projects.</p>
-  <a href="mailto:leonardtavares@icloud.com" class="contact-email">leonardtavares@icloud.com</a>
+  <a href="#" class="contact-email" data-email-link="primary">Contact me</a>
   <div class="contact-socials">
     <a href="https://www.instagram.com/leonardmtavares/" title="Instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Ig</a>
   </div>
@@ -1038,6 +1066,21 @@ I use motion not just to enhance visuals, but to guide behavior, improve clarity
       closeReelModal();
     }
   });
+
+  // Build email links in JS so the raw address is not exposed in HTML.
+  function hydrateEmailLinks() {
+    const local = ['leonard', 'tavares'].join('');
+    const domain = ['icloud', 'com'].join('.');
+    const email = local + '@' + domain;
+    const links = document.querySelectorAll('[data-email-link="primary"]');
+
+    links.forEach((link) => {
+      link.href = 'mailto:' + email;
+      link.setAttribute('aria-label', 'Email Leonard Tavares');
+    });
+  }
+
+  hydrateEmailLinks();
 
   // Highlight returned case card from query string (e.g. ?from=case-1)
   function highlightReturnedCase() {

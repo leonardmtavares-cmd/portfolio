@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leonard Tavares | Portfolio</title>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-body: #060a0f;
+    --bg-card: #0c151d;
+    --bg-panel: #171f26;
+    --text-main: #f1f2f4;
+    --text-muted: #a3abb2;
+    --accent: #ffe071;
+    --accent-text: #3d3d3d;
+    --border-blue: #3e64aa;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+
+  body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    background-color: var(--bg-card);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1000px;
+    padding: 80px 40px;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  }
+
+  /* Profile Header */
+  .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .avatar-wrapper {
+    width: 215px;
+    height: 215px;
+    border: 2px dashed rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .avatar {
+    width: 192px;
+    height: 192px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .info h1 {
+    font-size: 46px;
+    font-weight: 500;
+    color: var(--text-main);
+    line-height: 1.1;
+    margin-bottom: 5px;
+  }
+
+  .info h2 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-panel);
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .social-links a:hover {
+    background-color: var(--border-blue);
+    color: var(--text-main);
+  }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+    margin-bottom: 60px;
+  }
+
+  .stat-item {
+    text-align: center;
+    max-width: 150px;
+  }
+
+  .stat-number {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 5px;
+  }
+
+  .stat-text {
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--text-muted);
+  }
+
+  /* Actions */
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 80px;
+  }
+
+  .btn {
+    width: 290px;
+    height: 80px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+  }
+
+  .btn-primary {
+    background-color: var(--accent);
+    color: var(--accent-text);
+  }
+
+  .btn-secondary {
+    background-color: var(--bg-panel);
+    color: var(--text-muted);
+    border: 1px solid var(--border-blue);
+  }
+
+  /* Tabs */
+  .tabs-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tabs-container {
+    width: 100%;
+    max-width: 756px;
+    background-color: var(--bg-panel);
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 50px;
+  }
+
+  .tab {
+    flex: 1;
+    height: 80px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 22px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .tab.active {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-blue);
+    color: var(--text-muted);
+  }
+
+  /* Tab Content */
+  .tab-content {
+    display: none;
+    width: 100%;
+    max-width: 756px;
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 362px);
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .project-card {
+    width: 362px;
+    height: 226px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .project-card > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 224, 113, 0.92);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .project-card:hover .project-overlay {
+    opacity: 1;
+  }
+
+  .project-overlay h3 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--accent-text);
+    margin-bottom: 8px;
+  }
+
+  .project-overlay p {
+    font-size: 14px;
+    color: var(--accent-text);
+  }
+
+  /* Skills */
+  .skills-content {
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  .skills-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: var(--text-muted);
+  }
+
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .tool-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: var(--bg-panel);
+    border: 1px solid rgba(255,255,255,0.05);
+    color: var(--text-main);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .tool-tag svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Responsive Constraints */
+  @media (max-width: 850px) {
+    .profile { flex-direction: column; text-align: center; }
+    .social-links { justify-content: center; }
+    .stats { flex-direction: column; gap: 30px; align-items: center; }
+    .stat-item { max-width: 200px; }
+    .actions { flex-direction: column; align-items: center; }
+    .tabs-container { flex-direction: column; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card { width: 100%; height: 260px; max-width: 362px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="profile">
+    <div class="avatar-wrapper">
+      <img src="images/headshot2.png" alt="Leonard Tavares" class="avatar">
+    </div>
+    <div class="info">
+      <h1>Leonard Tavares</h1>
+      <h2>Motion Designer</h2>
+      <div class="social-links">
+        <a href="#" title="LinkedIn">in</a>
+        <a href="#" title="Behance">be</a>
+        <a href="https://www.instagram.com/leonardmtavares/" target="_blank" title="Instagram">ig</a>
+        <a href="#" title="Email" data-email-link="primary">@</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-number">5</div>
+      <div class="stat-text">Featured projects</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">6+</div>
+      <div class="stat-text">Creative tools</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">PT</div>
+      <div class="stat-text">Based in Portugal</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a href="resume/Leonard-Tavares-Resume.html" target="_blank" class="btn btn-primary">Download CV</a>
+    <a href="#" class="btn btn-secondary" data-email-link="primary">Contact me</a>
+  </div>
+
+  <div class="tabs-wrapper">
+    <div class="tabs-container">
+      <button class="tab active" onclick="switchTab('portfolio')">Portfolio</button>
+      <button class="tab" onclick="switchTab('skills')">Skills</button>
+    </div>
+
+    <div id="portfolio" class="tab-content active">
+      <div class="projects-grid">
+        <a href="case-1.html" class="project-card">
+          <img src="images/case 1/cover.jpg" alt="SaaS Product Explainer">
+          <div class="project-overlay">
+            <h3>SaaS Product Explainer</h3>
+            <p>Client Work · 2025</p>
+          </div>
+        </a>
+        <a href="case-2.html" class="project-card">
+          <img src="images/case 2/cover.jpg" alt="App Onboarding Flow">
+          <div class="project-overlay">
+            <h3>App Onboarding Flow</h3>
+            <p>UI Animation · 2025</p>
+          </div>
+        </a>
+        <a href="case-3.html" class="project-card">
+          <img src="images/case 3/cover.jpg" alt="Social Motion Pack">
+          <div class="project-overlay">
+            <h3>Social Motion Pack</h3>
+            <p>Monthly Pack · 2025</p>
+          </div>
+        </a>
+        <a href="case-4.html" class="project-card" style="background: #1A1A1A;">
+          <div class="project-overlay">
+            <h3>Case 4 Project</h3>
+            <p>Category · 2026</p>
+          </div>
+        </a>
+        <a href="case-5.html" class="project-card" style="background: #1A1A1A;">
+          <div class="project-overlay">
+            <h3>Case 5 Project</h3>
+            <p>Category · 2026</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div id="skills" class="tab-content">
+      <div class="skills-content">
+        <p>I am Leonard Maciel Tavares, a motion designer based in Portugal working at the intersection of animation, UI, and interaction design. I use motion not just to enhance visuals, but to guide behavior, improve clarity, and create meaningful digital experiences.</p>
+        <div class="tools-list">
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="#8B5CF6"><circle cx="12" cy="12" r="10"></circle></svg>
+            After Effects
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="#FBBF24"><circle cx="12" cy="12" r="10"></circle></svg>
+            Illustrator
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="#A78BFA"><circle cx="12" cy="12" r="10"></circle></svg>
+            Figma
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="#38BDF8"><circle cx="12" cy="12" r="10"></circle></svg>
+            Photoshop
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="#FB923C"><circle cx="12" cy="12" r="10"></circle></svg>
+            Blender
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="#60A5FA"><circle cx="12" cy="12" r="10"></circle></svg>
+            Unity
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+</script>
+// Build email links in JS so the raw address is not exposed in HTML.
+(() => {
+  const local = ['leonard', 'tavares'].join('');
+  const domain = ['icloud', 'com'].join('.');
+  const email = local + '@' + domain;
+
+  document.querySelectorAll('[data-email-link="primary"]').forEach((link) => {
+    link.href = 'mailto:' + email;
+    link.setAttribute('aria-label', 'Email Leonard Tavares');
+  });
+})();
+
+</body>
+</html>
