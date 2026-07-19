@@ -1049,6 +1049,20 @@ I use motion not just to enhance visuals, but to guide behavior, improve clarity
     links.forEach((link) => {
       link.href = 'mailto:' + email;
       link.setAttribute('aria-label', 'Email Leonard Tavares');
+      link.dataset.defaultLabel = 'Contact me';
+
+      const showEmail = () => {
+        link.textContent = email;
+      };
+
+      const showDefaultLabel = () => {
+        link.textContent = link.dataset.defaultLabel || 'Contact me';
+      };
+
+      link.addEventListener('pointerenter', showEmail);
+      link.addEventListener('pointerleave', showDefaultLabel);
+      link.addEventListener('focus', showEmail);
+      link.addEventListener('blur', showDefaultLabel);
     });
   }
 
